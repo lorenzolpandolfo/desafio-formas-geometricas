@@ -1,2 +1,3 @@
 # desafio-formas-geometricas
-atividade unisenac da disciplina Programação Fullstack
+
+Atividade da disciplina Programação Fullstack do UniSenac
