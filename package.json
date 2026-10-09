@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "build": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
   }
 }

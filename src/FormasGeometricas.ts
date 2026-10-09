@@ -1,6 +1,6 @@
-function validarDimensoes(...dimensoes) {
+function validarDimensoes(...dimensoes: number[]): void {
   for (const dimensao of dimensoes) {
-    if (typeof dimensao !== 'number' || !Number.isFinite(dimensao)) {
+    if (!Number.isFinite(dimensao)) {
       throw new TypeError('As dimensões devem ser números finitos.');
     }
 
@@ -10,66 +10,58 @@ function validarDimensoes(...dimensoes) {
   }
 }
 
-export class Forma {
-  constructor(nome) {
-    if (new.target === Forma) {
-      throw new TypeError('Forma é uma classe abstrata e não pode ser instanciada.');
-    }
+export abstract class Forma {
+  protected constructor(public readonly nome: string) {}
 
-    this.nome = nome;
-  }
-
-  CalcularArea() {
-    throw new Error('As classes concretas devem implementar CalcularArea().');
-  }
+  abstract CalcularArea(): number;
 }
 
 export class Quadrado extends Forma {
-  constructor(lado) {
+  constructor(public readonly lado: number) {
     super('Quadrado');
     validarDimensoes(lado);
-    this.lado = lado;
   }
 
-  CalcularArea() {
+  CalcularArea(): number {
     return this.lado * this.lado;
   }
 }
 
 export class Circulo extends Forma {
-  constructor(raio) {
+  constructor(public readonly raio: number) {
     super('Circulo');
     validarDimensoes(raio);
-    this.raio = raio;
   }
 
-  CalcularArea() {
+  CalcularArea(): number {
     return Math.PI * this.raio ** 2;
   }
 }
 
 export class Triangulo extends Forma {
-  constructor(base, altura) {
+  constructor(
+    public readonly base: number,
+    public readonly altura: number,
+  ) {
     super('Triangulo');
     validarDimensoes(base, altura);
-    this.base = base;
-    this.altura = altura;
   }
 
-  CalcularArea() {
+  CalcularArea(): number {
     return (this.base * this.altura) / 2;
   }
 }
 
 export class Retangulo extends Forma {
-  constructor(base, altura) {
+  constructor(
+    public readonly base: number,
+    public readonly altura: number,
+  ) {
     super('Retangulo');
     validarDimensoes(base, altura);
-    this.base = base;
-    this.altura = altura;
   }
 
-  CalcularArea() {
+  CalcularArea(): number {
     return this.base * this.altura;
   }
 }
